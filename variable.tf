@@ -1,12 +1,12 @@
 
 variable "ingress-rules" {
   type = list(number)
-  default = [ 22,8080,80,443,30001 ]
+  default = [ 22,8080,80,443,30001,2049 ]
 }
 
 variable "egress-rules" {
   type = list(number)
-  default = [ 22,8080,80,443,30001 ]
+  default = [ 22,8080,80,443,30001,2049 ]
 }
 
 variable "eks_cluster_policies" {

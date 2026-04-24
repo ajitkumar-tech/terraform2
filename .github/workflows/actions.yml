@@ -53,3 +53,8 @@ jobs:
            
       - name: push    
         run:  docker push 748716953870.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
+      - name: update kubeconfig
+        run: aws eks update-kubeconfig --name ${{ env.clustername }}    --region ${{ env.Region }} 
+
+      - name: deploy 
+        run: kubectl apply -f deployment.yaml

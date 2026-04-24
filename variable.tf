@@ -1,5 +1,5 @@
 
-variable "ingress-rules" {
+variable "ingress-rules" { 
   type = list(number)
   default = [ 22,8080,80,443,30001,2049 ]
 }

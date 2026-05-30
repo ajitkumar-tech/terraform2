@@ -38,23 +38,5 @@ jobs:
         run: terraform plan
 
       - name: apply
-        run: terraform destroy -auto-approve
-      - name: Log in to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1    
-      - name: repo check
-        run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }}
-        continue-on-error: true
-        
-      - name: build
-        run:  docker build -t ${{ env.name }} .
- 
-      - name: tag
-        run: docker tag nginx:latest 748716953870.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
-           
-      - name: push    
-        run:  docker push 748716953870.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
-      - name: update kubeconfig
-        run: aws eks update-kubeconfig --name ${{ env.clustername }}    --region ${{ env.Region }} 
-
-      - name: deploy 
-        run: kubectl apply -f deployment.yaml
+        run: terraform apply -auto-approve
+      
